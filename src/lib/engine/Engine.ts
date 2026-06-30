@@ -1,5 +1,5 @@
 import { VERTEX_SHADER, FLUID_FRAGMENT_SHADER, RENDER_FRAGMENT_SHADER } from '../shaders/shaders';
-import { VortexConfig, DistortionStyle } from '../types';
+import type { VortexConfig, DistortionStyle } from '../types';
 
 export class Engine {
   private gl: WebGLRenderingContext;

@@ -79,7 +79,6 @@ export const RENDER_FRAGMENT_SHADER = `
   varying vec2 vUv;
   
   uniform sampler2D uPressure;
-  uniform sampler2D uBackground;
   uniform vec2 uResolution;
   
   // Distortion style
@@ -95,21 +94,20 @@ export const RENDER_FRAGMENT_SHADER = `
     
     vec3 normal = normalize(vec3(p_r - p_c, p_t - p_c, 0.5));
     
-    vec2 offset = normal.xy * 0.5; // Refraction intensity
-    
-    vec4 baseColor = texture2D(uBackground, vUv + offset);
-    
     // Specular highlight
     vec3 lightDir = normalize(vec3(1.0, 1.0, 1.0));
     float spec = pow(max(dot(normal, lightDir), 0.0), 32.0);
     
+    // Base transparency (only show where there is a wave)
+    float waveIntensity = clamp(abs(p_c) * 10.0, 0.0, 1.0);
+    
     if (uDistortionMode == 1) {
       // Mercury: Metallic, highly reflective
-      gl_FragColor = vec4(vec3(0.7, 0.75, 0.8) * (p_c + 0.5) + spec, 1.0);
+      gl_FragColor = vec4(vec3(0.7, 0.75, 0.8) * (p_c + 0.5) + spec, waveIntensity);
     } else if (uDistortionMode == 2) {
       // Plasma: Emissive color mapping based on pressure
       vec3 color = vec3(sin(p_c * 10.0), cos(p_c * 8.0), sin(p_c * 5.0)) * 0.5 + 0.5;
-      gl_FragColor = vec4(color, 1.0);
+      gl_FragColor = vec4(color, waveIntensity);
     } else if (uDistortionMode == 4) {
       // Oil: Rainbow thin-film interference
       vec3 color = vec3(
@@ -117,10 +115,10 @@ export const RENDER_FRAGMENT_SHADER = `
         sin(p_c * 15.0 + 2.0),
         sin(p_c * 15.0 + 4.0)
       ) * 0.5 + 0.5;
-      gl_FragColor = vec4(mix(baseColor.rgb, color, 0.5) + spec, 1.0);
+      gl_FragColor = vec4(color + spec, waveIntensity);
     } else {
-      // Glass / Water
-      gl_FragColor = vec4(baseColor.rgb + vec3(spec * 0.5), baseColor.a);
+      // Glass / Water (Transparent overlay with highlights)
+      gl_FragColor = vec4(vec3(1.0), spec);
     }
   }
 `;

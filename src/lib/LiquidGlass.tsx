@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { LiquidGlassProps } from './types';
+import React, { useEffect, useRef } from 'react';
+import type { LiquidGlassProps } from './types';
 import { Engine } from './engine/Engine';
 
 export const LiquidGlass: React.FC<LiquidGlassProps> = ({

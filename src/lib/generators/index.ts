@@ -1,4 +1,4 @@
-import { VortexGenerator, VortexGeneratorParams, VortexGeneratorResult } from '../types';
+import type { VortexGenerator, VortexGeneratorParams, VortexGeneratorResult } from '../types';
 
 export const CircularGenerator = (): VortexGenerator => {
   return (params: VortexGeneratorParams): VortexGeneratorResult => {
@@ -33,7 +33,7 @@ export const PolygonGenerator = (sides: number): VortexGenerator => {
   };
 };
 
-export const SVGPathGenerator = (pathStr: string): VortexGenerator => {
+export const SVGPathGenerator = (_pathStr: string): VortexGenerator => {
   // In a full implementation, this would parse the SVG path and map distances.
   // For now, we fallback to a circle if path parsing is omitted in this demo.
   return CircularGenerator();
