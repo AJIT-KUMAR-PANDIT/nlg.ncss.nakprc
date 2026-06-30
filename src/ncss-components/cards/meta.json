@@ -1,0 +1,9 @@
+{
+  "name": "Awesome Cards",
+  "slug": "cards",
+  "description": "Glassmorphic card components with smooth interactive hover states.",
+  "installation": "npm i @ncss/cards",
+  "props": [
+    { "name": "children", "type": "ReactNode", "default": "null", "description": "The content inside the card." }
+  ]
+}

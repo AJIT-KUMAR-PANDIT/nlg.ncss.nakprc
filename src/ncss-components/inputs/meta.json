@@ -1,0 +1,9 @@
+{
+  "name": "Awesome Inputs",
+  "slug": "inputs",
+  "description": "Modern text input fields with focus effects and optional icons.",
+  "installation": "npm i @ncss/inputs",
+  "props": [
+    { "name": "icon", "type": "ReactNode", "default": "undefined", "description": "Optional icon component to display inside the input." }
+  ]
+}

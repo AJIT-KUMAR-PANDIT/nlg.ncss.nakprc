@@ -1,0 +1,9 @@
+{
+  "name": "Awesome Buttons",
+  "slug": "buttons",
+  "description": "A collection of beautifully crafted, interactive button components.",
+  "installation": "npm i @ncss/buttons",
+  "props": [
+    { "name": "children", "type": "ReactNode", "default": "null", "description": "The content inside the button." }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Liquid Glass",
+  "slug": "liquid-glass",
+  "description": "A programmable liquid interaction engine for React that creates highly realistic glass and fluid distortion overlays using WebGL.",
+  "installation": "npm i @ncss/liquid-glass",
+  "props": [
+    { "name": "vortex", "type": "VortexConfig", "default": "{ type: 'circle' }", "description": "Configures the shape and intensity of the pointer impulse." },
+    { "name": "distortion", "type": "DistortionStyle", "default": "'glass'", "description": "The shader effect applied to the pressure field ('glass', 'water', 'mercury', 'plasma', 'oil')." },
+    { "name": "children", "type": "ReactNode", "default": "null", "description": "Elements to render on top of the liquid simulation." }
+  ]
+}
